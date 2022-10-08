@@ -23,4 +23,13 @@ router.delete("/:id", (req, res) => {
   res.json("Hello Sir");
 });
 
+// to add a new friend to a user's friend list
+router.post("/:userId/friends", (req, res) => {
+  res.json("Hello Sir");
+});
+
+//to remove a friend from a user's friend list
+router.delete("/:userId/friends/:friendId", (req, res) => {
+  res.json("Hello Sir");
+});
 module.exports = router;
