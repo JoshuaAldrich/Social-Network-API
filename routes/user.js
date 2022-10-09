@@ -9,8 +9,9 @@ router.get("/", async (req, res) => {
 });
 
 //get user by id
-router.get("/:id", (req, res) => {
-  res.json("Hello Sir");
+router.get("/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.json(user);
 });
 
 //post user
@@ -24,13 +25,18 @@ router.post("/", async (req, res) => {
 });
 
 //put request for user by id
-router.put("/:id", (req, res) => {
-  res.json("Hello Sir");
+router.put("/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  user.email = req.body.email;
+  user.username = req.body.username;
+  await user.save();
+  res.json(user);
 });
 
 //delete a user by id
-router.delete("/:id", (req, res) => {
-  res.json("Hello Sir");
+router.delete("/:id", async (req, res) => {
+  const users = await User.deleteOne();
+  res.json(users);
 });
 
 // to add a new friend to a user's friend list
