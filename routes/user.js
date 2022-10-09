@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 // get all users
 router.get("/", async (req, res) => {
-  const users = await User.find();
+  const users = await User.find().populate("thoughts").populate("friends");
   res.json(users);
 });
 
