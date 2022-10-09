@@ -21,8 +21,18 @@ let userSchema = new mongoose.Schema({
       message: "Please enter a valid email address",
     },
   },
-  thoughts: {},
-  friends: {},
+  thoughts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Thought",
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);

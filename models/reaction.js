@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-let thoughtSchema = new mongoose.Schema({
-  thoughtText: {
+let reactionSchema = new mongoose.Schema({
+  body: {
     type: String,
     required: true,
     validate: {
@@ -15,7 +15,10 @@ let thoughtSchema = new mongoose.Schema({
       message: "Please keep your message between 1 and 280 characters.",
     },
   },
-
+  username: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -24,13 +27,6 @@ let thoughtSchema = new mongoose.Schema({
       return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     },
   },
-
-  username: {
-    type: String,
-    required: true,
-  },
-
-  reactions: [],
 });
 
-module.exports = mongoose.model("Thought", thoughtSchema);
+module.exports = mongoose.model("Reaction", reactionSchema);
