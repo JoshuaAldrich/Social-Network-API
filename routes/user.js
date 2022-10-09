@@ -1,8 +1,11 @@
 const router = require("express").Router();
+const { response } = require("express");
+const User = require("../models/user");
 
 // get all users
-router.get("/", (req, res) => {
-  res.json("Hello World");
+router.get("/", async (req, res) => {
+  const users = await User.find();
+  res.json(users);
 });
 
 //get user by id
@@ -11,7 +14,14 @@ router.get("/:id", (req, res) => {
 });
 
 //post user
-router.post("/", (req, res) => {});
+router.post("/", async (req, res) => {
+  let newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+  });
+  await newUser.save();
+  res.json(newUser);
+});
 
 //put request for user by id
 router.put("/:id", (req, res) => {
@@ -32,4 +42,5 @@ router.post("/:userId/friends", (req, res) => {
 router.delete("/:userId/friends/:friendId", (req, res) => {
   res.json("Hello Sir");
 });
+
 module.exports = router;

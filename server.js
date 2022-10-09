@@ -4,6 +4,7 @@ const thoughtRoutes = require("./routes/thought");
 const app = express();
 const mongoose = require("mongoose");
 
+app.use(express.json());
 app.use("/api/thoughts", thoughtRoutes);
 app.use("/api/users", userRoutes);
 
