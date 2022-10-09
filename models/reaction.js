@@ -29,4 +29,4 @@ let reactionSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Reaction", reactionSchema);
+module.exports = reactionSchema;
