@@ -58,13 +58,9 @@ router.post("/:thoughtId/reactions", async (req, res) => {
 //delete reaction based on id
 router.delete("/:thoughtId/reactions/:reactionId", async (req, res) => {
   const thought = await Thought.findById(req.params.thoughtId);
-  thought.reactions = thought.reactions.filter((reaction) => {
-    if (reaction._id != req.params.reactionId) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  thought.reactions = thought.reactions.filter(
+    (reaction) => reaction._id != req.params.reactionId
+  );
   await thought.save();
   res.json(thought);
 });
